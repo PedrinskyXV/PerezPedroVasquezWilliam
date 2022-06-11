@@ -17,7 +17,7 @@ class CreateEmployeesTable extends Migration
             $table->increments('id');
             $table->string('name', 50);
             $table->integer('age');
-            $table->decimal('salary_base', 6,2);
+            $table->decimal('base_salary', 6,2);
             $table->string('address',150);
             $table->string('photo')->nullable();
             $table->integer('id_administrador')->unsigned();
