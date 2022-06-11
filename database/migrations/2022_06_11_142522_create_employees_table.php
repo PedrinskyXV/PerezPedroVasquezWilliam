@@ -16,7 +16,7 @@ class CreateEmployeesTable extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 50);
-            $table->integer('age', 2);
+            $table->integer('age');
             $table->decimal('salary_base', 6,2);
             $table->string('address',150);
             $table->string('photo')->nullable();
