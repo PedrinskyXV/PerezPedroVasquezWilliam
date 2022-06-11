@@ -19,7 +19,7 @@ class EmployeeSeeder extends Seeder
             [
                 "name" => "PPerez",
                 "age" => 22,
-                "salary_base" => 600,
+                "base_salary" => 600,
                 'address' => 'prueba',
                 "id_administrador" => 1,
                 "id_branch" => 1,
@@ -28,7 +28,7 @@ class EmployeeSeeder extends Seeder
             [
                 "name" => "William",
                 "age" => 27,
-                "salary_base" => 650,
+                "base_salary" => 650,
                 'address' => 'prueba',
                 "id_administrador" => 2,
                 "id_branch" => 2,
@@ -37,7 +37,7 @@ class EmployeeSeeder extends Seeder
             [
                 "name" => "Tzec",
                 "age" => 30,
-                "salary_base" => 850,
+                "base_salary" => 850,
                 'address' => 'prueba',
                 "id_administrador" => 1,
                 "id_branch" => 2,
@@ -46,7 +46,7 @@ class EmployeeSeeder extends Seeder
             [
                 "name" => "Oscar",
                 "age" => 29,
-                "salary_base" => 1200,
+                "base_salary" => 1200,
                 'address' => 'prueba',
                 "id_administrador" => 3,
                 "id_branch" => 3,

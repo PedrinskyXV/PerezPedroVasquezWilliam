@@ -24,7 +24,6 @@ use App\Http\Controllers\SupplierController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
 
 /* Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -58,6 +57,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 }); */
 
 Route::group(['middleware' => ['auth']], function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::resource('roles', RolesController::class);
     Route::resource('users', UserController::class);
     /* Route::resource('/suppliers', EmployeeController::class); */

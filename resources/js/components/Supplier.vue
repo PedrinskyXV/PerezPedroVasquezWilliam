@@ -17,7 +17,7 @@
                         <input
                             class="form-control"
                             type="text"
-                            v-model="employee.name_employee"
+                            v-model="employee.name"
                         />
                     </div>
                     <div class="col-md-4 pt-3">
@@ -26,7 +26,6 @@
                             class="form-control"
                             type="text"
                             v-model="employee.age"
-                            v-mask="'########-#'"
                         />
                     </div>
                     <div class="col-md-4 pt-3">
@@ -45,6 +44,21 @@
                             class="form-control"
                             v-model="employee.address"
                         />
+                    </div>
+                    <div class="col-md-4 pt-3">
+                        <label>Sucursal</label>
+                        <select
+                            v-model="employee.id_branch"
+                            class="form-select"
+                        >
+                            <option
+                                v-for="branck in branckes"
+                                :key="branck.id"
+                                :value="id_branch.name"
+                            >
+                                {{ branck.name }}
+                            </option>
+                        </select>
                     </div>
 
                     <div class="col-md-12 pt-3">
@@ -149,7 +163,7 @@ export default {
                     }
                     this.errors = [];
 
-                    if (!this.employee.name_employee) {
+                    if (!this.employee.name) {
                         this.errors.push("El nombre es requerido");
                     }
 
