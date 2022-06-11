@@ -3,7 +3,7 @@
     <div class="container">
       <template v-if="!loading">
         <div class="row">
-          <h1>Bancos</h1>
+          <h1></h1>
           <!-- Form -->
           <div class="col-md-4 d-none">
             <input class="form-control" type="text" v-model="bank.id" />

@@ -44,10 +44,10 @@
                     <ul class="navbar-nav me-auto">
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/suppliers') }}">Proveedores</a>
+                                <a class="nav-link" href="{{ url('/suppliers') }}">Empleados</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/documents') }}">Cuentas</a>
+                                <a class="nav-link" href="{{ url('/documents') }}">Sucursales</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/banks') }}">Bancos</a>

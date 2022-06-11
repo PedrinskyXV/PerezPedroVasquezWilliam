@@ -10,7 +10,7 @@
           </div>
 
           <div class="col-md-4 pt-3">
-            <label>Código</label>
+            <label></label>
             <input class="form-control" type="text" v-model="document.code" />
           </div>
           <div class="col-md-4 pt-3">
