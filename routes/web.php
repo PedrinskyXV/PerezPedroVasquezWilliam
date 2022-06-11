@@ -5,10 +5,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\BankController;
+use App\Http\Controllers\BranchController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CheckController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\SupplierController;
 
 /*
@@ -24,7 +26,7 @@ use App\Http\Controllers\SupplierController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware' => ['auth']], function () {
+/* Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     Route::get('generateSummary/{id}', [PDFController::class, 'generateSummary']);
@@ -53,14 +55,20 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/summary', function () {
         return view('summary.index');
     });
-});
+}); */
 
-/* Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::resource('roles', RolesController::class);
     Route::resource('users', UserController::class);
-    Route::resource('employees', EmployeeController::class);
-    Route::resource('subsidiaries', Subsidiary::class);
-}); */
+    /* Route::resource('/suppliers', EmployeeController::class); */
+   
+    Route::resource('branches', BranchController::class);
+
+    Route::resource('api/employee', EmployeeController::class);
+    Route::get('/suppliers', function () {
+        return view('employee.index');
+    });
+});
 
 
 Auth::routes(['register'=>false, 'reset'=>false]);

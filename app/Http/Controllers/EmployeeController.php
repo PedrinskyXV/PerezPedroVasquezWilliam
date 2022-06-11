@@ -14,7 +14,9 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        $employee = Employee::paginate(15);
+
+        return response()->json(['message' => 'success', 'employees' => $employee]);
     }
 
     /**
