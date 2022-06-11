@@ -46,7 +46,7 @@
                             v-model="employee.address"
                         />
                     </div>
-                    
+
                     <div class="col-md-12 pt-3">
                         <a href="#" class="btn btn-success" @click="save()">
                             <i class="fa fa-save"></i> {{ textButton }}</a
@@ -89,6 +89,7 @@ export default {
                 name_employee: "",
             },
             employees: [],
+            errors: [],
             grades: [],
             headers: [
                 "#",
@@ -123,19 +124,51 @@ export default {
             let res;
             switch (this.textButton) {
                 case "Guardar":
-                    res = await axios
-                        .post("api/employee", this.employee)
-                        .catch((e) => {
-                            ui.alert(
-                                "Registro no pudo ser guardado correctamente.",
-                                "error"
-                            );
-                        });
+                    this.loading = true;
+                    this.textButton = "Guardando...";
 
-                    if (res.data.message == "success") {
-                        this.employees = res.data.employees;
-                        ui.alert("Registro creado correctamente.");
+                    if (
+                        this.employee.name_employee &&
+                        this.employee.age &&
+                        this.employee.base_salary &&
+                        this.employee.address
+                    ) {
+                        res = await axios
+                            .post("api/employee", this.employee)
+                            .catch((e) => {
+                                ui.alert(
+                                    "Registro no pudo ser guardado correctamente.",
+                                    "error"
+                                );
+                            });
+
+                        if (res.data.message == "success") {
+                            this.employees = res.data.employees;
+                            ui.alert("Registro creado correctamente.");
+                        }
                     }
+                    this.errors = [];
+
+                    if (!this.employee.name_employee) {
+                        this.errors.push("El nombre es requerido");
+                    }
+
+                    if (!this.employee.age) {
+                        this.errors.push("La edad es requerida");
+                    }
+
+                    if (!this.employee.base_salary) {
+                        this.errors.push("El sueldo base es requerido");
+                    }
+
+                    if (!this.employee.address) {
+                        this.errors.push("La dirección es requerida");
+                    }
+
+                    e.preventDefault();
+                    this.loading = false;
+                    this.textButton = "Guardar";
+
                     break;
                 case "Modificar":
                     res = await axios
