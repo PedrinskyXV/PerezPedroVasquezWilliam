@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Branch extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'id',
+        'name',
+        'address',        
+    ];
+
+    protected $timestamp = true;
 }

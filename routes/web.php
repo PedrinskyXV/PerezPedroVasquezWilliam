@@ -25,7 +25,7 @@ use App\Http\Controllers\SupplierController;
 */
 
 
-/* Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     Route::get('generateSummary/{id}', [PDFController::class, 'generateSummary']);
@@ -54,7 +54,7 @@ use App\Http\Controllers\SupplierController;
     Route::get('/summary', function () {
         return view('summary.index');
     });
-}); */
+});
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -67,6 +67,16 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('api/employee', EmployeeController::class);
     Route::get('/suppliers', function () {
         return view('employee.index');
+    });
+
+    Route::resource('api/role', EmployeeController::class);
+    Route::get('/roles', function () {
+        return view('rol.index');
+    });
+
+    Route::resource('api/branch', BranchController::class);
+    Route::get('/branches', function () {
+        return view('branch.index');
     });
 });
 

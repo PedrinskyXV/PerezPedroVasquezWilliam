@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Branch;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
-class BranchController extends Controller
+class RolController extends Controller
 {
+
+    function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +20,8 @@ class BranchController extends Controller
      */
     public function index()
     {
-        $branches = Branch::paginate(15);
-        return response()->json(['message' => 'success', 'branches'=>$branches]);
+        $roles = Role::paginate(15);
+        return response()->json(['message' => 'success', 'roles' => $roles]);
     }
 
     /**
@@ -42,10 +48,10 @@ class BranchController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Branch  $branch
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Branch $branch)
+    public function show($id)
     {
         //
     }
@@ -53,10 +59,10 @@ class BranchController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Branch  $branch
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Branch $branch)
+    public function edit($id)
     {
         //
     }
@@ -65,10 +71,10 @@ class BranchController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Branch  $branch
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Branch $branch)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +82,10 @@ class BranchController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Branch  $branch
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Branch $branch)
+    public function destroy($id)
     {
         //
     }

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Branch;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
-class BranchController extends Controller
+
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +16,8 @@ class BranchController extends Controller
      */
     public function index()
     {
-        $branches = Branch::paginate(15);
-        return response()->json(['message' => 'success', 'branches'=>$branches]);
+        $users = User::paginate(15);        
+        return response()->json(['message' => 'success', 'users'=>$users]);
     }
 
     /**
@@ -25,7 +27,8 @@ class BranchController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::pluck('name', 'name')->all();
+        return view('users.create', compact('roles'));
     }
 
     /**
@@ -36,16 +39,17 @@ class BranchController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::insert($request->except(['grade_name']));
+        return response()->json(['message'=>'success']);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Branch  $branch
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Branch $branch)
+    public function show($id)
     {
         //
     }
@@ -53,34 +57,36 @@ class BranchController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Branch  $branch
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Branch $branch)
+    public function edit($id)
     {
-        //
+        
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Branch  $branch
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Branch $branch)
+    public function update(Request $request, User $user)
     {
-        //
+        User::where('id', $user->id)->update($request->except(['id']));
+        return response()->json(["message"=>"success"]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Branch  $branch
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Branch $branch)
+    public function destroy(User $user)
     {
-        //
+        User::where('id', $user->id)->delete();
+        return response()->json(["message"=>"success"]);
     }
 }
